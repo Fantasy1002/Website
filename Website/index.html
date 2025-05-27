@@ -1,22 +1,143 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Justin Stross</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --section-bg: #1e1e1e;
+            --link-color: #4dabf7;
+            --link-hover: #82cfff;
+        }
+
+        body.light-mode {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --section-bg: #f5f5f5;
+            --link-color: #0077cc;
+            --link-hover: #004499;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header, nav, main, section {
+            max-width: 900px;
+            margin: auto;
+            padding: 1rem;
+            background-color: var(--section-bg);
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1, h2 {
+            color: var(--text-color);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .directory {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        #toggle-theme {
+            margin-top: 1rem;
+            background-color: transparent;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #toggle-theme:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
         .social-media-icons {
             display: flex;
-            gap: 20px; /* Abstand zwischen den Logos */
-            align-items: center; /* Zentriert die Icons vertikal */
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
             padding: 1rem 0;
         }
 
         .social-media-icons img {
-            width: 40px; /* Einheitliche Größe */
+            width: 40px;
             height: 40px;
-            object-fit: contain; /* Bild richtig skalieren */
+            object-fit: contain;
+            transition: filter 0.3s;
+        }
+
+        .social-media-icons a:hover img {
+            filter: brightness(1.3);
+        }
+
+        @media (max-width: 600px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .directory {
+                display: none;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .directory.open {
+                display: flex;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -24,30 +145,34 @@
     <header>
         <h1 id="top">Website von Justin Stross</h1>
     </header>
-    <main>
-        <h2>Inhaltsverzeichnis</h2>
+
+    <nav>
+        <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
         <ul class="directory">
             <li><a href="#Kontakt">Kontakt</a></li>
             <li><a href="#UeberMich">Über mich</a></li>
             <li><a href="#SocialMedia">Social Media</a></li>
             <li><a href="#Emby">Emby Server</a></li>
         </ul>
+        <button id="toggle-theme">🌓 Modus wechseln</button>
+    </nav>
 
-        <section>
-            <h2 id="Kontakt">Kontakt</h2>
+    <main>
+        <section id="Kontakt">
+            <h2>Kontakt</h2>
             <p>E-Mail: <a href="mailto:strossjustin0@gmail.com">strossjustin0@gmail.com</a></p>
             <p>Discord: @fantasy1002</p>
         </section>
 
-        <section>
-            <h2 id="UeberMich">Über mich</h2>
+        <section id="UeberMich">
+            <h2>Über mich</h2>
             <p>Hallo! Mein Name ist Justin Stross. Ich bin ein begeisterter Technikfan. In meiner Freizeit spiele ich gerne Videospiele, höre Musik und unterhalte mich über Hardware.</p>
             <p>Geburtsdatum: 20.01.2008</p>
             <p>Wohnort: Weißensee, Thüringen, Deutschland</p>
         </section>
 
-        <section>
-            <h2 id="SocialMedia">Social Media</h2> 
+        <section id="SocialMedia">
+            <h2>Social Media</h2>
             <div class="social-media-icons">
                 <a href="https://www.tiktok.com/@fantasy1002"><img src="images/icon-tiktok.svg" alt="TikTok Logo"></a>
                 <a href="https://www.facebook.com/profile.php?id=100083461446711"><img src="images/icon-facebook.svg" alt="Facebook Logo"></a>
@@ -56,10 +181,29 @@
             </div>
         </section>
 
-        <section>
-            <h2 id="Emby"><a href="http://xput89p0j4nona9s.myfritz.net:3705">Emby Home Server</a></h2>
+        <section id="Emby">
+            <h2><a href="http://xput89p0j4nona9s.myfritz.net:3705">Emby Home Server</a></h2>
         </section>
+    </main>
 
-    </main>    
+    <footer>
+        <!-- Optionaler Footer-Inhalt -->
+    </footer>
+
+    <script>
+        // Mobile-Menü
+        const toggleButton = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.directory');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('open');
+        });
+
+        // Dark/Light Theme
+        const themeBtn = document.getElementById('toggle-theme');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
 </body>
 </html>
